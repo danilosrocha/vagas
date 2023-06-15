@@ -1,17 +1,26 @@
-var data =  require("./fakeData");
+const data = require("./fakeData");
 
-module.exports = function(req, res){
-  
-    var name =  req.body.name;
-    var jov =  req.body.job;
-    
-    var newUser = {
-        name: name,
-        job: job,
+const registerUser = (req, res) => {
+
+    const { name, job, permission } = req.body; // Desestruturação do Objeto Body
+
+    if (!name || !job) {
+        res.status(400).send('Campos "name" e "job" são obrigatórios'); // Campos obrigatórios para cadastro
+        return;
     }
 
-    data.push(newUser)
-    
-    res.send(newUser);
+    const id = data.length + 1 // Cadastra o próximo Id do usuário (aqui temos um problema com o delete)
 
+    const newUser = {
+        id,
+        name,
+        job,
+        permission,
+    };
+
+    data.push(newUser)
+
+    res.send(newUser);
 };
+
+module.exports = { registerUser }

@@ -1,4 +1,3 @@
-
 const fakeData  =  [
     {
         id: 1,
@@ -6,6 +5,5 @@ const fakeData  =  [
         job: "Desenvolvedor"
     }
 ]
-
 
 module.exports = fakeData;
